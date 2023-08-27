@@ -10,7 +10,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=A-default-settings
+PKG_NAME:=iS-default-settings
 PKG_VERSION:=1.2
 PKG_RELEASE:=$(COMMITCOUNT)
 
@@ -18,7 +18,7 @@ PKG_LICENSE:=GPL-3.0
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/A-default-settings
+define Package/iS-default-settings
   SECTION:=luci
   CATEGORY:=LuCI
   TITLE:=LuCI support for Default Settings
@@ -26,11 +26,11 @@ define Package/A-default-settings
   DEPENDS:=+luci-lib-base +luci
 endef
 
-define Package/A-default-settings-chn
-  $(Package/A-default-settings)
-  TITLE+= (Optimize for CHN users)
-  DEPENDS:=+A-default-settings +@LUCI_LANG_zh_Hans
-endef
+#define Package/iS-default-settings-chn
+#  $(Package/A-default-settings)
+#  TITLE+= (Optimize for CHN users)
+#  DEPENDS:=+A-default-settings +@LUCI_LANG_zh_Hans
+#endef
 
 define Build/Prepare
 	chmod -R +x ./files/usr/share target/*/{*,}/base-files/{etc/init.d,usr/bin} >/dev/null || true
@@ -39,7 +39,7 @@ endef
 define Build/Compile
 endef
 
-define Package/A-default-settings/install
+define Package/iS-default-settings/install
 	$(CP) ./files/* $(1)/
 	echo $(BOARD)$(TARGETID)
 	if [ -d ./target/$(BOARD)/base-files/. ]; then \
@@ -56,5 +56,5 @@ endef
 #	po2lmo ./i18n/more.zh_Hans.po $(1)/usr/lib/lua/luci/i18n/more.zh-cn.lmo
 #ende
 
-$(eval $(call BuildPackage,A-default-settings))
+$(eval $(call BuildPackage,iS-default-settings))
 #$(eval $(call BuildPackage,A-default-settings-chn))
